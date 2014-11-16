@@ -105,4 +105,4 @@ var core = new Systematic({
 });
 
 var result = core.run();
-console.log( "Result (in decimal) of Running program is: " + result );
+console.log( 'Result (in decimal) of Running program is: ' + result );
