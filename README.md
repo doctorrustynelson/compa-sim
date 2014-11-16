@@ -5,7 +5,7 @@
 ![NPM License](https://img.shields.io/npm/l/compa-sim.svg)
 
 ##Overview
-compa-sim is a ìgenericî node.js computer architecture simulator built to simulate running machine code for a user specified set of instructions in a way that allowed for customization and tweaking of a variety of aspects.
+compa-sim is a ‚Äúgeneric‚Äù node.js computer architecture simulator built to simulate running machine code for a user specified set of instructions in a way that allowed for customization and tweaking of a variety of aspects.
 This includes how the instructions work, special flags, number of registers, forcing faults, etc.
 
 ##Installation
@@ -20,3 +20,6 @@ This includes how the instructions work, special flags, number of registers, for
 or
     
     $ node node_modules/compa-sim/bin/basic-simulation.js
+    
+##More Information
+For more information see the [Wiki](https://github.com/doctorrustynelson/compa-sim/wiki)
