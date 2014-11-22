@@ -1,6 +1,7 @@
 #compa-sim
 
 [![Build Status](https://img.shields.io/travis/doctorrustynelson/compa-sim.svg)](http://travis-ci.org/doctorrustynelson/compa-sim)
+[![Coverage Status](http://img.shields.io/coveralls/doctorrustynelson/compa-sim.svg)](https://coveralls.io/r/doctorrustynelson/compa-sim)
 [![NPM Version](https://img.shields.io/npm/v/compa-sim.svg)](https://npmjs.org/package/compa-sim)
 ![NPM License](https://img.shields.io/npm/l/compa-sim.svg)
 
