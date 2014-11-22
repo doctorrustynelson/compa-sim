@@ -20,7 +20,7 @@
   "scripts": {
     "test": "grunt test",
     "example": "node ./bin/basic-simulation",
-    "ci": "istanbul cover -- grunt nodeunit && grunt coveralls"
+    "ci": "istanbul cover --preload-sources -x bin/** -x Gruntfile.js -- grunt nodeunit && grunt coveralls"
   },
   "dependencies": {
     "chalk": "*",
