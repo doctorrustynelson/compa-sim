@@ -53,6 +53,11 @@ module.exports.numberToStringConversionTest = function( test ){
 	test.strictEqual( (17).toHexString(), '11' );
 	test.strictEqual( Number(10).toString( 16 ), 'a' );
 	test.strictEqual( (10).toHexString(), 'a' );
+	test.strictEqual( (3).toBinaryString(4), '0011' );
+	test.strictEqual( (11).toBinaryString(4), '1011' );
+	test.strictEqual( (3).toHexString(2), '03' );
+	test.strictEqual( (17).toHexString(2), '11' );
+	test.strictEqual( (10).toHexString(2), '0a' );
 	test.done();
 };
 
