@@ -10,81 +10,82 @@ var core = new Systematic({
 			name: 'ADD',
 			number_of_registers: 3,
 			raw_value: false,
-			run: function( registers, rr, ra, rb ){
+			run: function( state, rr, ra, rb ){
 				console.log( arguments );
-				registers[rr] = registers[ra] + registers[rb];
+				state.registers[rr] = state.registers[ra] + state.registers[rb];
 			}
 		},
 		'1': {
 			name: 'SUB',
 			number_of_registers: 3,
 			raw_value: false,
-			run: function( registers, rr, ra, rb ){
-				registers[rr] = registers[ra] - registers[rb];
+			run: function( state, rr, ra, rb ){
+				state.registers[rr] = state.registers[ra] - state.registers[rb];
 			}
 		},
 		'2': {
 			name: 'INCR',
 			number_of_registers: 1,
 			raw_value: false,
-			run: function( registers, ra ){
-				++registers[ra];
+			run: function( state, ra ){
+				++state.registers[ra];
 			}
 		},
 		'3': {
 			name: 'DECR',
 			number_of_registers: 1,
 			raw_value: false,
-			run: function( registers, ra ){
-				--registers[ra];
+			run: function( state, ra ){
+				--state.registers[ra];
 			}
 		},
 		'4': {
 			name: 'AND',
 			number_of_registers: 3,
 			raw_value: false,
-			run: function( registers, rr, ra, rb ){
-				registers[rr] = registers[ra] & registers[rb];
+			run: function( state, rr, ra, rb ){
+				state.registers[rr] = state.registers[ra] & state.registers[rb];
 			}
 		},
 		'5': {
 			name: 'OR',
 			number_of_registers: 3,
 			raw_value: false,
-			run: function( registers, rr, ra, rb ){
-				registers[rr] = registers[ra] | registers[rb];
+			run: function( state, rr, ra, rb ){
+				state.registers[rr] = state.registers[ra] | state.registers[rb];
 			}
 		},
 		'6': {
 			name: 'NOT',
 			number_of_registers: 0,
 			raw_value: false,
-			run: function( registers, ra ){
-				registers[ra] = ~registers[ra]; 
+			run: function( state, ra ){
+				state.registers[ra] = ~state.registers[ra]; 
 			}
 		},
 		'7': {
 			name: 'XOR',
 			number_of_registers: 3,
 			raw_value: false,
-			run: function( registers, rr, ra, rb ){
-				registers[rr] = registers[ra] ^ registers[rb];
+			run: function( state, rr, ra, rb ){
+				state.registers[rr] = state.registers[ra] ^ state.registers[rb];
 			}
 		},
 		'8': {
 			name: 'LOAD',
 			number_of_registers: 1,
 			raw_value: true,
-			run: function( registers, ra, value ){
-				registers[ ra ] = value;
+			run: function( state, ra, value ){
+				state.registers[ ra ] = value;
 			}
 		},
 		'9': {
 			name: 'RETURN',
 			number_of_registers: 1,
 			raw_value: false,
-			run: function( registers, ra ){
-				registers[0] = registers[ra];
+			run: function( state, ra ){
+				state.registers[0] = state.registers[ra];
+				state.pc = -1;
 			}
 		},
 	},
@@ -97,6 +98,8 @@ var core = new Systematic({
 		'0011 001000000', // DECR R1 (d4 - d1 = d3)
 		'1001 001000000'  // STORE R1 into R0 (d3)
 	],
+	mem_size: 7,
+	byte_length: 13,
 	instruction_length: 13,
 	operator_length: 4,
 	register_length: 3,
