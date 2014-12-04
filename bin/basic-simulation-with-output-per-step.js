@@ -105,7 +105,7 @@ var core = new Systematic({
 	register_size: 6,
 	num_registers: 8,
 	post_processors: [
-        Systematic.prototype.printState
+        Systematic.printState
 	]
 });
 
