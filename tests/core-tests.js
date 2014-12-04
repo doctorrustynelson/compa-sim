@@ -69,5 +69,20 @@ module.exports.integrationTests = {
 	basic: function( test ){
 		test.equal( require( '../bin/basic-simulation' ), 3 );
 		test.done();
-	}
+	},
+	
+	basicWithLoggin: function( test ){
+		test.equal( require( '../bin/basic-simulation-with-output-per-step' ), 3 );
+		test.done();
+	},
+	
+	defaultUnimplementedInstruction: function( test ){
+		test.throws( function( ){ require( '../bin/unimplemented-instruction-simulation' ); } );
+		test.done();
+	},
+	
+	overridenUnimplementedInstruction: function( test ){
+		test.equal( require( '../bin/override-unimplemented-instruction-simulation' ), 3 );
+		test.done();
+	},
 };

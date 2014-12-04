@@ -95,7 +95,7 @@ var core = new Systematic({
 		'0010 011000000', // INCR R3 (d59 + d1 = d60)
 		'0100 001010011', // AND R2 and R3 into R1 ( b000110 & b111100 = b000100 )
 		'0011 001000000', // DECR R1 (d4 - d1 = d3)
-		'1001 001000000'  // STORE R1 into R0 (d3)
+		'1111 001000000'  // STORE R1 into R0 (d3)
 	],
 	mem_size: 7,
 	byte_length: 13,
@@ -103,11 +103,17 @@ var core = new Systematic({
 	operator_length: 4,
 	register_length: 3,
 	register_size: 6,
-	num_registers: 8
+	num_registers: 8,
+	unimplemented_instruction: function( op_code, state ){
+		throw new Error( state.registers[1] );
+	}
 });
 
-var result = core.run();
-console.log( 'Result (in decimal) of Running program is: ' + result );
+try {
+	core.run(); 
+} catch( exception ){
+	console.log( 'Caught unimplemented instruction overriden error: ' + exception.message );
+	module.exports = exception.message;
+}
 
-module.exports = result;
 

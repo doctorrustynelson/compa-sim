@@ -103,7 +103,10 @@ var core = new Systematic({
 	operator_length: 4,
 	register_length: 3,
 	register_size: 6,
-	num_registers: 8
+	num_registers: 8,
+	post_processors: [
+        Systematic.prototype.printState
+	]
 });
 
 var result = core.run();

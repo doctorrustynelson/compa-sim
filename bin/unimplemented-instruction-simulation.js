@@ -95,7 +95,7 @@ var core = new Systematic({
 		'0010 011000000', // INCR R3 (d59 + d1 = d60)
 		'0100 001010011', // AND R2 and R3 into R1 ( b000110 & b111100 = b000100 )
 		'0011 001000000', // DECR R1 (d4 - d1 = d3)
-		'1001 001000000'  // STORE R1 into R0 (d3)
+		'1111 001000000'  // STORE R1 into R0 (d3)
 	],
 	mem_size: 7,
 	byte_length: 13,
@@ -106,8 +106,6 @@ var core = new Systematic({
 	num_registers: 8
 });
 
-var result = core.run();
-console.log( 'Result (in decimal) of Running program is: ' + result );
-
-module.exports = result;
+core.run();
+console.log( 'This line should never show up because an error should be thrown.' );
 
