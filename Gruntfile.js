@@ -23,6 +23,9 @@ module.exports = function( grunt ){
 			tests: [
 				'tests/**/*tests.js'
 			],
+			compiler: [
+				'tests/compiler-tests.js'
+			],
 			options: {
 				reporter: 'verbose'
 			}
@@ -39,6 +42,6 @@ module.exports = function( grunt ){
 	grunt.loadNpmTasks( 'grunt-contrib-nodeunit' );
 	grunt.loadNpmTasks( 'grunt-coveralls' );
 	
-	grunt.registerTask( 'test', [ 'jshint', 'nodeunit' ] );
+	grunt.registerTask( 'test', [ 'jshint', 'nodeunit:tests' ] );
 	grunt.registerTask( 'default', [ 'test' ] );
 };
