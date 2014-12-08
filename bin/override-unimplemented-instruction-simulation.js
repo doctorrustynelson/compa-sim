@@ -10,6 +10,7 @@ var core = new Systematic({
 			name: 'ADD',
 			number_of_registers: 3,
 			raw_value: false,
+			length: 13,
 			run: function( state, rr, ra, rb ){
 				state.registers[rr] = state.registers[ra] + state.registers[rb];
 			}
@@ -18,6 +19,7 @@ var core = new Systematic({
 			name: 'SUB',
 			number_of_registers: 3,
 			raw_value: false,
+			length: 13,
 			run: function( state, rr, ra, rb ){
 				state.registers[rr] = state.registers[ra] - state.registers[rb];
 			}
@@ -26,6 +28,7 @@ var core = new Systematic({
 			name: 'INCR',
 			number_of_registers: 1,
 			raw_value: false,
+			length: 13,
 			run: function( state, ra ){
 				++state.registers[ra];
 			}
@@ -34,6 +37,7 @@ var core = new Systematic({
 			name: 'DECR',
 			number_of_registers: 1,
 			raw_value: false,
+			length: 13,
 			run: function( state, ra ){
 				--state.registers[ra];
 			}
@@ -42,6 +46,7 @@ var core = new Systematic({
 			name: 'AND',
 			number_of_registers: 3,
 			raw_value: false,
+			length: 13,
 			run: function( state, rr, ra, rb ){
 				state.registers[rr] = state.registers[ra] & state.registers[rb];
 			}
@@ -50,6 +55,7 @@ var core = new Systematic({
 			name: 'OR',
 			number_of_registers: 3,
 			raw_value: false,
+			length: 13,
 			run: function( state, rr, ra, rb ){
 				state.registers[rr] = state.registers[ra] | state.registers[rb];
 			}
@@ -58,6 +64,7 @@ var core = new Systematic({
 			name: 'NOT',
 			number_of_registers: 0,
 			raw_value: false,
+			length: 13,
 			run: function( state, ra ){
 				state.registers[ra] = ~state.registers[ra]; 
 			}
@@ -66,6 +73,7 @@ var core = new Systematic({
 			name: 'XOR',
 			number_of_registers: 3,
 			raw_value: false,
+			length: 13,
 			run: function( state, rr, ra, rb ){
 				state.registers[rr] = state.registers[ra] ^ state.registers[rb];
 			}
@@ -74,6 +82,8 @@ var core = new Systematic({
 			name: 'LOAD',
 			number_of_registers: 1,
 			raw_value: true,
+			raw_value_length: 6,
+			length: 13,
 			run: function( state, ra, value ){
 				state.registers[ ra ] = value;
 			}
@@ -82,12 +92,19 @@ var core = new Systematic({
 			name: 'RETURN',
 			number_of_registers: 1,
 			raw_value: false,
+			length: 13,
 			run: function( state, ra ){
 				state.registers[0] = state.registers[ra];
 				state.pc = -1;
 			}
 		},
 	},
+	memory_size: 7,
+	memory_init: [],
+	byte_length: 13,
+	operator_length: 4,
+	register_length: 3,
+	num_registers: 8,
 	program: [
 		'1000 001110101', // LOAD R1 with 0d53
 		'1000 010000110', // LOAD R2 with 0d6
@@ -97,14 +114,6 @@ var core = new Systematic({
 		'0011 001000000', // DECR R1 (d4 - d1 = d3)
 		'1111 001000000'  // STORE R1 into R0 (d3)
 	],
-	memory_size: 7,
-	memory_init: [],
-	byte_length: 13,
-	instruction_length: 13,
-	operator_length: 4,
-	register_length: 3,
-	register_size: 6,
-	num_registers: 8,
 	unimplemented_instruction: function( op_code, state ){
 		throw new Error( state.registers[1] );
 	}

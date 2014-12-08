@@ -142,7 +142,6 @@ module.exports.stringToNumberConversionTest = function( unit ){
 		byte_length: 13,
 		operator_length: 4,
 		register_length: 3,
-		register_size: 6,
 		num_registers: 8
 	}, [
 	    'LOAD R1 0x35',

@@ -40,7 +40,6 @@ module.exports.testCanStep = {
 			instruction_length: 0,
 			operator_length: 0,
 			register_length: 0,
-			register_size: 0,
 			num_registers: 1
 		});
 		
@@ -58,7 +57,6 @@ module.exports.testCanStep = {
 			instruction_length: 0,
 			operator_length: 0,
 			register_length: 0,
-			register_size: 0,
 			num_registers: 1
 		});
 		
@@ -73,7 +71,7 @@ module.exports.integrationTests = {
 		test.done();
 	},
 	
-	basicWithLoggin: function( test ){
+	basicWithLogging: function( test ){
 		test.equal( require( '../bin/basic-simulation-with-output-per-step' ), 3 );
 		test.done();
 	},
