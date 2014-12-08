@@ -367,7 +367,7 @@ module.exports = {
 			raw_value_length: 16,
 			length: 32,
 			run: function( state, offset ){
-				state.cp = this.truncate( state.pc + offset );
+				state.pc = this.truncate( state.pc + offset );
 				
 				state.Z = false;
 				state.N = false;
@@ -385,7 +385,7 @@ module.exports = {
 			run: function( state, offset ){
 				
 				if( state.O )
-					state.cp = this.truncate( state.pc + offset );
+					state.pc = this.truncate( state.pc + offset );
 				
 				state.Z = false;
 				state.N = false;
@@ -403,7 +403,7 @@ module.exports = {
 			run: function( state, offset ){
 				
 				if( state.Z )
-					state.cp = this.truncate( state.pc + offset );
+					state.pc = this.truncate( state.pc + offset );
 				
 				state.Z = false;
 				state.N = false;
@@ -421,7 +421,7 @@ module.exports = {
 			run: function( state, offset ){
 				
 				if( state.DBZ )
-					state.cp = this.truncate( state.pc + offset );
+					state.pc = this.truncate( state.pc + offset );
 				
 				state.Z = false;
 				state.N = false;
@@ -439,7 +439,7 @@ module.exports = {
 			run: function( state, offset ){
 				
 				if( state.P )
-					state.cp = this.truncate( state.pc + offset );
+					state.pc = this.truncate( state.pc + offset );
 				
 				state.Z = false;
 				state.N = false;
@@ -457,7 +457,7 @@ module.exports = {
 			run: function( state, offset ){
 				
 				if( state.N )
-					state.cp = this.truncate( state.pc + offset );
+					state.pc = this.truncate( state.pc + offset );
 				
 				state.Z = false;
 				state.N = false;
@@ -509,7 +509,7 @@ module.exports = {
 			raw_value_length: 8,
 			length: 32,
 			run: function( state, rd, value ){
-				
+
 				state.registers[rd] = value;
 				
 				if ( value === 0 ) {
@@ -577,7 +577,7 @@ module.exports = {
 			raw_value_length: 0,
 			length: 32,
 			run: function( state, rd, rr, ro ){
-				state.registers[ rd ] = state.memory[ state.registers[ rr ] + state.registers[ ro ] ];
+				state.registers[ rd ] = state.memory[ this.truncate( state.registers[ rr ] + state.registers[ ro ] ) ];
 				
 				if( this.isNegative( state.registers[rd] ) ) {
 					state.Z = false;
@@ -609,8 +609,9 @@ module.exports = {
 		},
 	},
 	program: [],
+	flags: [ 'N', 'P', 'Z', 'DBZ', 'O' ],
 	memory_size: 65536,
-	memory_init: [],
+	memory_init: {},
 	byte_length: 16,
 	operator_length: 8,
 	register_length: 4,
