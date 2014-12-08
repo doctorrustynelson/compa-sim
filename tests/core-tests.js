@@ -34,7 +34,8 @@ module.exports.testCanStep = {
 		var core = new Systematic({
 			instructions: {},
 			program: [],
-			mem_size: 0,
+			memory_size: 0,
+			memory_init: [],
 			byte_length: 0,
 			instruction_length: 0,
 			operator_length: 0,
@@ -51,7 +52,8 @@ module.exports.testCanStep = {
 		var core = new Systematic({
 			instructions: {},
 			program: [],
-			mem_size: 1,
+			memory_size: 1,
+			memory_init: [],
 			byte_length: 0,
 			instruction_length: 0,
 			operator_length: 0,

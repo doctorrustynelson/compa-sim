@@ -137,15 +137,17 @@ module.exports.stringToNumberConversionTest = function( unit ){
 			},
 		},
 		program: [],
-		mem_size: 7,
+		memory_size: 7,
+		memory_init: [],
 		byte_length: 13,
 		operator_length: 4,
 		register_length: 3,
 		register_size: 6,
 		num_registers: 8
 	}, [
-	    'LOAD R1 53',
-	    'LOAD R2 6',
+	    'LOAD R1 0x35',
+	    'LOAD R2 0b110',
+	    'LOAD R4 17',
 	    'ADD R3 R1 R2',
 	    'INCR R3',
 	    'AND R1 R2 R3',
@@ -156,6 +158,7 @@ module.exports.stringToNumberConversionTest = function( unit ){
 	unit.deepEqual( result, [
   		'1000 001 110101', // LOAD R1 with 0d53
 		'1000 010 000110', // LOAD R2 with 0d6
+		'1000 100 010001',
 		'0000 011 001 010', // ADD R1 and R2 into R3 (d53 + d6 = d59)
 		'0010 011 000000', // INCR R3 (d59 + d1 = d60)
 		'0100 001 010 011', // AND R2 and R3 into R1 ( b000110 & b111100 = b000100 )

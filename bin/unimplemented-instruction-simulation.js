@@ -97,7 +97,8 @@ var core = new Systematic({
 		'0011 001000000', // DECR R1 (d4 - d1 = d3)
 		'1111 001000000'  // STORE R1 into R0 (d3)
 	],
-	mem_size: 7,
+	memory_size: 7,
+	memory_init: [],
 	byte_length: 13,
 	instruction_length: 13,
 	operator_length: 4,
