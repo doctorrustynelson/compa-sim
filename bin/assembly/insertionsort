@@ -1,72 +1,75 @@
+# INSTERTION SORT
+# array root
 LOADL R6 0x8000
+
+# array length
 LOADL R7 0xffff
 LEA R7 R6 R7
 
+# index1
 LOADS R5 0
 
+# OUTER LOOP
 NOP
 NOP
 NOP
 
+# min_index = index1
 CPY R4 R5
+
+# min_value = array[ min_index ]
 LEA R3 R6 R4
 
+# index2 = index1 + 1
+CPY R2 R5
+INCR R2
+
+# INNER LOOP
 NOP
 NOP
 NOP
 
-------------------
+# next_value = array[ index2 ]
+LEA R1 R6 R2
 
-CPY R4 R5
-INCR R4
+# if( next_value - min_value < 0 ) then min_index = index2 and min_value = next_value
+CPY R0 R1
+SUB R0 R3
+BRP 5
 
-NOP
-NOP
-NOP
-
-LEA R2 R6 R4
-
-CPY R1 R2
-SUB R1 R3
-BRP ------
-
-CPY R3 R2
+# min_value = next_value
+CPY R3 R1
+# min_index = index2
+CPY R4 R2
 
 NOP
 NOP
 NOP
 
-INCR R4
-CPY R1 R4
-SUB R1 R7
-BRN -----
+# index2++
+INCR R2
 
+# if( index2 - length < 0 ) then INNER LOOP
+CPY R0 R2
+SUB R0 R7
+BRN 0xFFF0
+
+# SWAP
+
+# R0 = array[ index1 ]
 LEA R0 R6 R5
+# array[ index1 ] = min_value
 SEA R3 R6 R5
-CPY R3 R0
+# array[ min_index ] = R0
+SEA R0 R6 R4
 
+# index1++
 INCR R5
 
-
-LEA R1 R6 R3
-LEA R2 R6 R4
-CPY R0 R1
-SUB R0 R2
-BRP 4
-BR 10
-SEA R1 R6 R4
-SEA R2 R6 R3
-LOADS R5 0
-
-NOP
-NOP
-NOP
-
-CPY R3 R4
-SUB R3 R7
-BRN 0xffe7
-
-TEST R5
-BRZ 0xffdf
+# if( index1 - length + 1 < 0 ) then OUTER LOOP
+CPY R0 R5
+SUB R0 R7
+INCR R0
+BRN 0xFFDC
 
 EXIT R0

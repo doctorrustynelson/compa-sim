@@ -1,4 +1,8 @@
+# BUBBLE SORT
+# array root
 LOADL R6 0x8000
+
+# array length
 LOADL R7 0xffff
 LEA R7 R6 R7
 
@@ -6,21 +10,35 @@ NOP
 NOP
 NOP
 
+# change occured = 1
 LOADS R5 1
+
+# index = 0
 LOADS R4 0
 
 NOP
 NOP
 NOP
 
+# index + 1
 CPY R3 R4
 INCR R4
+
+# array[ index ]
 LEA R1 R6 R3
+
+# array[ index + 1 ]
 LEA R2 R6 R4
-CPY R0 R1
-SUB R0 R2
-BRP 4
+
+# compare aray elements 
+CPY R0 R2
+SUB R0 R1
+
+# swap only when array[ index ] > array[ index + 1 ]
+BRN 4
 BR 10
+
+# swap
 SEA R1 R6 R4
 SEA R2 R6 R3
 LOADS R5 0
@@ -29,11 +47,15 @@ NOP
 NOP
 NOP
 
+# if( index + 1 < length ) then loop again 
 CPY R3 R4
 SUB R3 R7
 BRN 0xffe7
 
+# if ( changed occured = 0 ) then loop again
 TEST R5
 BRZ 0xffdf
+
+# exit
 
 EXIT R0
